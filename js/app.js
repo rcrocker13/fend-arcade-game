@@ -25,9 +25,9 @@ Enemy.prototype.update = function(dt) {
         if (Math.random() >= .66) {
             this.y = 60;
         } else if (Math.random() >= .33) {
-            this.y = 145;
+            this.y = 140;
         } else {
-            this.y = 225;
+            this.y = 220;
         }
 
     } else {
@@ -50,6 +50,8 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
+    this.x = this.x;
+    this.y = this.y;
 }
 
 Player.prototype.render = function(x, y) {
@@ -66,6 +68,9 @@ Player.prototype.handleInput = function(direction) {
         this.x = this.x;
     } else if  (direction === 'down' && this.y === 380) {
         this.y = this.y;
+    } else if  (direction === 'up' && this.y === 60) {
+        this.x = 200;
+        this.y = 380;
     } else if (direction === 'left') {
         this.x -= 100;
     } else if (direction === 'right') {
@@ -86,8 +91,8 @@ Player.prototype.handleInput = function(direction) {
 var player = new Player();
 
 var bug1 = new Enemy(-150, 60);
-var bug2 = new Enemy(-150, 145);
-var bug3 = new Enemy(-150, 225);
+var bug2 = new Enemy(-150, 140);
+var bug3 = new Enemy(-150, 220);
 
 var allEnemies = [bug1, bug2, bug3];
 
@@ -103,3 +108,16 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+function checkCollisions() {
+    if (player.y === bug1.y && (player.x > bug1.x - 60 && player.x < bug1.x + 60)) {
+        player.x = 200;
+        player.y = 380;
+    } else if (player.y === bug2.y && (player.x > bug2.x - 60 && player.x < bug2.x + 60)) {
+        player.x = 200;
+        player.y = 380;
+    } else if (player.y === bug3.y && (player.x > bug3.x - 60 && player.x < bug3.x + 60)) {
+        player.x = 200;
+        player.y = 380;
+    }
+}
