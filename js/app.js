@@ -91,7 +91,7 @@ Player.prototype.checkCollisions = function() {
         player.x = 200;
         player.y = 380;
     }
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
