@@ -46,7 +46,7 @@ Enemy.prototype.render = function() {
 var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.x = 200;
-    this.y = 400;
+    this.y = 380;
 };
 
 Player.prototype.update = function() {
@@ -58,17 +58,25 @@ Player.prototype.render = function(x, y) {
 
 Player.prototype.handleInput = function(direction) {
 
-    console.log(direction);
+    console.log("Start position x " + this.x,"y " + this.y);
 
-    if (direction = 'left') {
-        player.render(player.x - 100, player.y)
-    } else if (direction = 'right') {
-        player.render(player.x + 100, player.y)
-    } else if (direction = 'up') {
-        player.render(player.x, player.y - 100)
+    if (direction === 'left' && this.x === 0) {
+        this.x = this.x;
+    } else if  (direction === 'right' && this.x === 400) {
+        this.x = this.x;
+    } else if  (direction === 'down' && this.y === 380) {
+        this.y = this.y;
+    } else if (direction === 'left') {
+        this.x -= 100;
+    } else if (direction === 'right') {
+        this.x += 100;
+    } else if (direction === 'up') {
+        this.y -= 80;
     } else {
-        player.render(player.x, player.y + 100)
+        this.y += 80;
     }
+
+    console.log("End position x " + this.x,"y " + this.y);
 
 }
 
