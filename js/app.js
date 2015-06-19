@@ -1,4 +1,3 @@
-// Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -22,9 +21,9 @@ Enemy.prototype.update = function(dt) {
 
         this.x -= 650;
 
-        if (Math.random() >= .66) {
+        if (Math.random() >= 0.66) {
             this.y = 60;
-        } else if (Math.random() >= .33) {
+        } else if (Math.random() >= 0.33) {
             this.y = 140;
         } else {
             this.y = 220;
@@ -33,12 +32,12 @@ Enemy.prototype.update = function(dt) {
     } else {
         this.x += this.speed + dt;
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -52,15 +51,13 @@ var Player = function() {
 Player.prototype.update = function() {
     this.x = this.x;
     this.y = this.y;
-}
+};
 
 Player.prototype.render = function(x, y) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.handleInput = function(direction) {
-
-    console.log("Start position x " + this.x,"y " + this.y);
 
     if (direction === 'left' && this.x === 0) {
         this.x = this.x;
@@ -81,8 +78,19 @@ Player.prototype.handleInput = function(direction) {
         this.y += 80;
     }
 
-    console.log("End position x " + this.x,"y " + this.y);
+};
 
+Player.prototype.checkCollisions = function() {
+    if (player.y === bug1.y && (player.x > bug1.x - 60 && player.x < bug1.x + 60)) {
+        player.x = 200;
+        player.y = 380;
+    } else if (player.y === bug2.y && (player.x > bug2.x - 60 && player.x < bug2.x + 60)) {
+        player.x = 200;
+        player.y = 380;
+    } else if (player.y === bug3.y && (player.x > bug3.x - 60 && player.x < bug3.x + 60)) {
+        player.x = 200;
+        player.y = 380;
+    }
 }
 
 // Now instantiate your objects.
@@ -93,7 +101,6 @@ var player = new Player();
 var bug1 = new Enemy(-150, 60);
 var bug2 = new Enemy(-150, 140);
 var bug3 = new Enemy(-150, 220);
-
 var allEnemies = [bug1, bug2, bug3];
 
 // This listens for key presses and sends the keys to your
@@ -108,16 +115,3 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-
-function checkCollisions() {
-    if (player.y === bug1.y && (player.x > bug1.x - 60 && player.x < bug1.x + 60)) {
-        player.x = 200;
-        player.y = 380;
-    } else if (player.y === bug2.y && (player.x > bug2.x - 60 && player.x < bug2.x + 60)) {
-        player.x = 200;
-        player.y = 380;
-    } else if (player.y === bug3.y && (player.x > bug3.x - 60 && player.x < bug3.x + 60)) {
-        player.x = 200;
-        player.y = 380;
-    }
-}
