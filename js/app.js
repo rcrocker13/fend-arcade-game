@@ -81,15 +81,15 @@ Player.prototype.handleInput = function(direction) {
 };
 
 Player.prototype.checkCollisions = function() {
-    if (player.y === bug1.y && (player.x > bug1.x - 60 && player.x < bug1.x + 60)) {
-        player.x = 200;
-        player.y = 380;
-    } else if (player.y === bug2.y && (player.x > bug2.x - 60 && player.x < bug2.x + 60)) {
-        player.x = 200;
-        player.y = 380;
-    } else if (player.y === bug3.y && (player.x > bug3.x - 60 && player.x < bug3.x + 60)) {
-        player.x = 200;
-        player.y = 380;
+    if (this.y === bug1.y && (this.x > bug1.x - 60 && this.x < bug1.x + 60)) {
+        this.x = 200;
+        this.y = 380;
+    } else if (this.y === bug2.y && (this.x > bug2.x - 60 && this.x < bug2.x + 60)) {
+        this.x = 200;
+        this.y = 380;
+    } else if (this.y === bug3.y && (this.x > bug3.x - 60 && this.x < bug3.x + 60)) {
+        this.x = 200;
+        this.y = 380;
     }
 };
 
